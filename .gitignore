@@ -1,0 +1,16 @@
+# Secrets — never commit
+automations/bridge/.env
+**/.env
+
+# Runtime artifacts
+automations/bridge/.venv/
+automations/bridge/*.log
+__pycache__/
+
+# Personal data produced by a live instance (keep your fork private if you commit these)
+briefs/*
+!briefs/pending-questions.md
+archive/
+
+# OS noise
+.DS_Store

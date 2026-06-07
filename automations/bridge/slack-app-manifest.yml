@@ -1,0 +1,38 @@
+# Slack app manifest — create your own app instance from this in ~2 minutes:
+# https://api.slack.com/apps -> Create New App -> "From a manifest" -> paste this.
+#
+# WHY EVERYONE NEEDS THEIR OWN APP INSTANCE (not one shared app):
+# the bridge uses Socket Mode; if several people's machines connected to ONE app,
+# Slack would distribute events between connections round-robin — your colleague's
+# laptop would receive YOUR questions. One shared manifest = zero duplicated config
+# work; separate instances = full isolation of data and secrets.
+
+display_information:
+  name: Work OS Bridge
+  description: Personal read-only assistant over my Work OS vault
+  background_color: "#2c2d30"
+features:
+  app_home:
+    home_tab_enabled: false
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: false   # critical: allows sending messages to the app
+  bot_user:
+    display_name: Work OS Bridge
+    always_online: true
+oauth_config:
+  scopes:
+    bot:
+      - chat:write
+      - im:history
+      - im:read
+      - reactions:write
+      - users:read
+settings:
+  event_subscriptions:
+    bot_events:
+      - message.im
+  interactivity:
+    is_enabled: false
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false

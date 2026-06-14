@@ -5,6 +5,7 @@ type: client | partner | product | domain | internal | technical
 domain: <one of topics/domains/* or n/a>
 status: active | on-hold | closed
 watch: true | false
+related_topics: [<card-1>, <card-2>]  # kebab-case file names, no brackets; keep in sync with [[wikilinks]] in the body
 owner: <DRI / lead>
 user_role: <DRI / coordination / support / observer>
 created: YYYY-MM-DD

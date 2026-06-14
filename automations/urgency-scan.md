@@ -27,6 +27,6 @@ IF NOTHING meets the criteria: finish WITHOUT any message or file (silence = not
 
 BORDERLINE CASES (don't guess — see automations/_grill-me-protocol.md): if unsure whether something is urgent, do NOT alert — append an entry to briefs/pending-questions.md (one decision + your recommended answer); the morning brief will collect it.
 
-IF SOMETHING qualifies: DM the user THEMSELVES (only them!) a short alert in {{LANGUAGE}}: what happened, why urgent, suggested first step, source link. Save a copy to {{VAULT_PATH}}/briefs/YYYY-MM-DD-HHMM-alert.md and append a History entry to the right topic file (with source).
+IF SOMETHING qualifies: save the alert to {{VAULT_PATH}}/briefs/YYYY-MM-DD-HHMM-alert.md and append a History entry to the right topic file (with source). If notifications are enabled, also DM the user THEMSELVES (only them!) a short alert in {{CONVERSATION_LANGUAGE}}: what happened, why urgent, suggested first step, source link.
 
 IRON RULES: you write only to the vault and the user's own DM; nothing to other people/systems. Better to skip a doubtful case than to generate noise.

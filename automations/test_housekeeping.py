@@ -42,8 +42,8 @@ _intro_
 - {NEXT}: forward the date to finance.
 
 ### T-20260922-01 · WAITING_FOR_OTHER · Partner Y: comments on 5 documents
-- {ST}: {OPEN} · {OWNER}: Alex [OPS] · {TOPIC}: [[other-topic]] · {LINEAR}: ABC-4167 · {DEADLINE}: 2026-10-03 · {CREATED}: 2026-09-22 · {UPDATED}: 2026-09-29
-- {STATE}: returned, waiting for Sam. ({SRC}: Mail 1a0e, 2026-09-28)
+- {ST}: {OPEN} · {OWNER}: Alex [OPS] · {TOPIC}: [[other-topic]] · {LINEAR}: ABC-123 · {DEADLINE}: 2026-10-03 · {CREATED}: 2026-09-22 · {UPDATED}: 2026-09-29
+- {STATE}: returned, waiting for Sam. ({SRC}: Mail m1, 2026-09-28)
 
 ## {SEC_REC}
 - every Monday: review records without a ticket
@@ -52,7 +52,7 @@ _intro_
 
 ### T-20260930-01 · {CAND} · Customer Z: technical set-up
 - {ST}: {OPEN} · {OWNER}: Alex [TEAM] · {TOPIC}: [[example-topic]] · {LINEAR}: {NONE} · {DEADLINE}: {NONE} · {CREATED}: 2026-09-30 · {UPDATED}: 2026-09-30
-- {STATE}: Kim mentioned "potential help". ({SRC}: Chat C049/t1790702478, 2026-09-29)
+- {STATE}: Kim asked whether we can help. ({SRC}: Chat C2/t1, 2026-09-29)
 """
 
 CARD_TPL = """---
@@ -80,7 +80,7 @@ part_of: example-topic
 period: 2026-Q4
 previous: [example-topic-history-2026-Q3]
 ---
-- 2026-10-01: Customer Z sent schedules 2A/2B. ({SRC}: Mail 1a0c, 2026-10-01) [confidence: high] [T-20260924-02]
+- 2026-10-01: Customer Z sent the draft schedule. ({SRC}: Mail m2, 2026-10-01) [confidence: high] [T-20260924-02]
 - 2026-10-02: technical meeting held. ({SRC}: Calendar, 2026-10-02)
 """
 
@@ -88,8 +88,8 @@ LOG_TPL = """---
 period: 2026-Q4
 previous: [archive/tasks/TASKS-log-2026-Q3]
 ---
-- 2026-10-01 07:40 · T-20260924-02 · {EV_CREATED} · from Mail 1a0c, topic [[example-topic]]
-- 2026-10-02 09:12 · T-20260924-02 · {EV_TYPE} ACTION_REQUIRED→WAITING_FOR_OTHER · waiting for Customer Z ({SRC}: Mail 1a0d)
+- 2026-10-01 07:40 · T-20260924-02 · {EV_CREATED} · from Mail m2, topic [[example-topic]]
+- 2026-10-02 09:12 · T-20260924-02 · {EV_TYPE} ACTION_REQUIRED→WAITING_FOR_OTHER · waiting for Customer Z ({SRC}: Mail m3)
 """
 
 
@@ -182,7 +182,7 @@ class ParseTasks(Base):
         self.assertIn("EXTRA_LINE", [v.code for v in viol])
 
     def test_stan_without_source_is_violation(self):
-        bad = self.GOOD.replace(self.L("- {STATE}: returned, waiting for Sam. ({SRC}: Mail 1a0e, 2026-09-28)"),
+        bad = self.GOOD.replace(self.L("- {STATE}: returned, waiting for Sam. ({SRC}: Mail m1, 2026-09-28)"),
                                 self.L("- {STATE}: returned, waiting for Sam."))
         _, viol = self.parse(bad)
         self.assertIn("STAN_NO_SOURCE", [v.code for v in viol])

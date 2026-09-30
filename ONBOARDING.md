@@ -15,11 +15,11 @@ Challenge weak assumptions politely; the user may be wrong about what they need.
    - `{{CONVERSATION_LANGUAGE}}` — the language you talk to the user in. Recommend: ask; default to the language the user wrote to you in.
    - `{{VAULT_LANGUAGE}}` — the language you STORE vault content in (topic cards, briefs, TASKS.md). Recommend: same as conversation. Source quotes always stay in their original language regardless.
    - `{{TEAM_LANGUAGE}}` — the language of team-facing draft artifacts (status updates, e-mails, ticket comments). Recommend: the user's org/working language; may differ from the two above.
-   → fill these in `AGENTS.md` and `automations/*.md`.
+   → fill these in `AGENTS.md` and `automations/*.md`. If `{{VAULT_LANGUAGE}}` is not English, agree the words used in task records and cards (e.g. `Status/State/Current state` in the user's language) and record them in `automations/housekeeping.labels.json` (built-in `pl`, or `{"base": "en", …overrides}` — README "Label sets"); translate `_templates/` and the TASKS.md section names to match.
 
 1. **Role & responsibilities** — what is their job, who do they report to, what do they OWN vs. merely observe? → seeds `AGENTS.md` header and `TASKS.md` scope.
 
-2. **Domains** — the 3–7 main areas of their work (markets, products, clients, projects…). → create `topics/domains/<kebab-case>/` per domain (these replace the placeholder example domains). Seed 1–3 empty topic cards per domain from `_templates/topic.md`, `watch: true` for the hottest ones.
+2. **Domains** — the 3–7 main areas of their work (markets, products, clients, projects…). → create `topics/domains/<kebab-case>/` per domain (these replace the placeholder example domains). Seed 1–3 empty topic cards per domain from `_templates/topic.md`, each with its empty `<card>-history.md` from `_templates/topic-history.md` (`period:` = current quarter), `watch: true` for the hottest ones.
 
 3. **Sources of truth** — where does their work happen (Slack/Teams? email? Jira/Linear/Asana? calendar? CRM?), which channels/projects carry signal? → fill `{{SOURCES}}` and channel lists in `automations/*.md`.
 
@@ -41,7 +41,7 @@ Challenge weak assumptions politely; the user may be wrong about what they need.
 
 10. **Sensitive knowledge** — does their role involve "things we must not promise externally" (product limits, pricing, legal)? → set up `knowledge/` files with the authorization header.
 
-11. **Initial backfill** — how far back to seed topic histories (recommend: ~60 days, key domains only, every entry with a source) and from which sources. Run it only after the user confirms scope.
+11. **Initial backfill** — how far back to seed topic histories (recommend: ~60 days, key domains only, every entry with a source) and from which sources. Run it only after the user confirms scope. Events go to `<card>-history.md` (chronological; entries from earlier quarters into `<card>-history-YYYY-Qn.md`), then write each card's `## Current state` from them; open commitments become task records in `TASKS.md` (rule 15) with a `created` line in `TASKS-log.md`.
 
 ## Completion gate (loop until clear)
 
@@ -57,7 +57,7 @@ After EACH onboarding session, run `automations/onboarding-validation.md`. If it
 ## After the interview
 
 - Replace ALL `{{PLACEHOLDERS}}` in `AGENTS.md` and `automations/*.md`.
-- Create the domain folders and seed files.
+- Create the domain folders and seed files; set `period:` in `TASKS-log.md` to the current quarter (or run `python3 automations/housekeeping.py --apply` once) and confirm `python3 automations/housekeeping.py --check` reports 0 violations.
 - Install ONLY the opted-in scheduled tasks (or tell the user exactly how, if you cannot).
 - Set up the Slack bridge only if the user opted in (`automations/bridge/SETUP.md`).
 - Propose — do not run unprompted — the backfill; run it only after the user confirms scope.

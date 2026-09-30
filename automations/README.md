@@ -19,4 +19,6 @@ Scheduled jobs are **opt-in** — install during onboarding only the ones the us
 | urgency-scan.md | workdays every 2h, 9–17 | watchlist-only scan → alert file (+ DM if notifications on) or silence |
 | onboarding-validation.md | on-demand (not a cron) | the completion gate — run after every onboarding session and on "validate my setup" |
 
+Not a prompt but a script: `housekeeping.py` validates task records, the task log, cards and histories (`--check`), and performs the quarterly rollover / archiving (`--apply`); tests in `test_housekeeping.py`, label sets in `housekeeping.labels.example.json`. See README "State vs history".
+
 The "don't guess — ask" protocol used by all: `_grill-me-protocol.md`. Phone access (opt-in): `bridge/`.

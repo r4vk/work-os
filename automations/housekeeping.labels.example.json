@@ -1,0 +1,26 @@
+{
+  "_comment": "Copy to automations/housekeeping.labels.json to change the words housekeeping.py expects. 'base' = built-in set to start from (en | pl); every other key overrides it. Object keys (fields, statuses, sections, events, messages) are merged key by key; strings and lists are replaced. Keys starting with '_' are ignored. Full key list: README.md, section 'Label sets'.",
+  "base": "en",
+  "fields": {
+    "linear": "Linear"
+  },
+  "none": "none",
+  "statuses": {
+    "open": "open",
+    "closed": "closed",
+    "obsolete": "obsolete"
+  },
+  "types": ["ACTION_REQUIRED", "DECISION_REQUIRED", "WAITING_FOR_OTHER", "FYI", "RISK_TO_MONITOR"],
+  "candidate_type": "CANDIDATE",
+  "state_line": "State",
+  "next_step_line": "Next step",
+  "sections": {
+    "open": "Open",
+    "recurring": "Recurring",
+    "candidates": "Candidates"
+  },
+  "card_state_heading": "Current state",
+  "card_history_heading": "History",
+  "history_footer": "History",
+  "source_marker": "source"
+}

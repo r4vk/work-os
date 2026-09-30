@@ -82,7 +82,7 @@ cd automations && python3 -m unittest test_housekeeping    # the test suite
 
 `--check` reports, with file and line: malformed record header or fields line, duplicate ID, missing field, a non-`open` record in `TASKS.md`, a candidate outside its section or older than 14 days, records not in descending ID order, a `## History` section in a card, a card without `## Current state` or without its `[[<card>-history]]` footer, history/log lines out of date order, a `[T-…]` tag pointing to an unknown ID, a `*-history*` file in `related_topics`, and an overdue quarterly rollover (`period` ≠ current quarter). Archived `-history-YYYY-Qn.md` files are checked leniently (front matter and `[T-…]` tags only), so migrated legacy content is never reformatted. `--apply` moves and renames files but never rewrites the text of an entry. Run `--check` weekly (e.g. in the Monday brief) and `--apply` on the first day of each quarter.
 
-The fresh template passes `--check` for the quarter in `TASKS-log.md` (`period: 2026-Q3`): `python3 automations/housekeeping.py --check --vault . --today 2026-09-30` → 0 violations. In a later quarter the first `--check` reports `ROLLOVER_DUE` on `TASKS-log.md`; run `--apply` once (or set `period:` to the current quarter during onboarding).
+The fresh template passes `--check` for the quarter in `TASKS-log.md` (`period: 2026-Q4`): `python3 automations/housekeeping.py --check --vault . --today 2026-10-01` → 0 violations. In a later quarter the first `--check` reports `ROLLOVER_DUE` on `TASKS-log.md`; run `--apply` once (or set `period:` to the current quarter during onboarding).
 
 ### Label sets
 

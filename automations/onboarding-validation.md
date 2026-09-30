@@ -26,6 +26,7 @@ Read the vault and verify each. Mark ✅ met / ❌ gap, with the evidence (file 
 - **Automations decision recorded.** It is explicit whether the user wants scheduled jobs at all; for each enabled job a mirror exists with placeholders filled and a real `schedule`; skipped ones are `enabled: false`. "Not decided yet" is a gap.
 - **Notifications & bridge decisions recorded.** DM/notification on or off (and `{{DM_CHANNEL}}` set if on); bridge set up or explicitly declined.
 - **Autonomy boundary** confirmed (default or tightened — never loosened).
+- **Vault format valid.** `python3 automations/housekeeping.py --check` reports 0 violations (seed cards have `## Current state` and a `<card>-history.md`; `TASKS-log.md` `period:` is the current quarter; the label set matches `{{VAULT_LANGUAGE}}`).
 
 ## Step 3 — verdict
 
